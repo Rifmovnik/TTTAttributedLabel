@@ -1324,7 +1324,10 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
 
 #pragma mark - UIView
 
-- (CGSize)sizeThatFits:(CGSize)size {
+- (CGSize)sizeThatFits:(CGSize)_size {
+	CGSize size = _size;
+	size.width -= self.textInsets.left + self.textInsets.right; 	// [NAK]
+	size.height -= self.textInsets.top + self.textInsets.bottom; 	// [NAK]
     if (!self.attributedText) {
         return [super sizeThatFits:size];
     } else {
